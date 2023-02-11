@@ -6,6 +6,10 @@ const loadPhones = async (searchText) => {
 }
 const displayPhones = phones => {
     const phonesContainer = document.getElementById('phones-container');
+    // display for textempty
+    phonesContainer.textContent = '';
+    // display 5phone only
+    phones = phones.slice(0, 5);
     phones.forEach(phone => {
         const phoneDiv = document.createElement('div');
         phoneDiv.classList.add('col');
