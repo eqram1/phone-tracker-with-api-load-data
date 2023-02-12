@@ -62,6 +62,13 @@ document.getElementById('btn-search').addEventListener('click', function () {
     // start loader
     processSearch(10);
 })
+// search input field enterkey handler
+document.getElementById('search-field').addEventListener('keypress', function (e) {
+
+    if (e.key === 'Enter') {
+        processSearch(10);
+    }
+});
 // toggle spinner start
 const toggleSpinner = isLoading => {
     const loaderSection = document.getElementById('loader');
