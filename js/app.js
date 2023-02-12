@@ -39,7 +39,9 @@ const displayPhones = (phones, dataLimit) => {
             }</h5>
                             <p class="card-text">This is a longer card with supporting text below as a natural
                                 lead-in to additional content. This content is a little bit longer.</p>
-                                <button onclick="loadPhoneDetails('${phone.slug}')" href="#" class="btn btn-primary">Show Details</button>
+                                <button onclick="loadPhoneDetails('${phone.slug}')" href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phoneDetailModal">Show Details</button>
+                                
+                                
                         </div>
                     </div>
     
@@ -87,6 +89,15 @@ const loadPhoneDetails = async id => {
     const url = `https://openapi.programming-hero.com/api/phone/${id}`;
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data.data);
+    displayPhoneDetails(data.data);
 }
-// loadPhones();
+const displayPhoneDetails = phone => {
+    console.log(phone);
+    const modalTitle = document.getElementById('phoneDetailModalLabel');
+    modalTitle.innerText = phone.name;
+    const phoneDetails = Document.getElementById('phone-details');
+    phoneDetails.innerHTML = `
+    <p>Release date:${phone.releaseDate ? phone.releaseDate : 'No Release date found'}</p>
+    `
+}
+loadPhones('apple');
